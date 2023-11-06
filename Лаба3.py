@@ -24,8 +24,11 @@ def x_field(field, coords):
 x_field(field, x_coords)
 
 # Виведення поля
-for row in field:
-    print(" ".join(row))
+def print_field(field):
+    for row in field:
+        print(" ".join(row))
+
+print_field(field)
 
 # Цикл переміщення X
 while True:
@@ -38,9 +41,10 @@ while True:
         direction = parts[0]
         distance = int(parts[1])
 
+         new_x_coords = [] # Створюємо новий список для нових координат X
+
         # Переміщення X по всім координатам
-        for i in range(len(x_coords)):
-            x, y = x_coords[i]
+        for x, y in x_coords:
             new_x, new_y = x, y  # Создаем новые переменные для хранения новых координат
 
             if direction == 'вгору':
@@ -54,18 +58,18 @@ while True:
 
             # Проверяем, чтобы новые координаты находились в пределах поля
             if 0 <= new_x < 12 and 0 <= new_y < 9:
-                x_coords[i] = (new_x, new_y)  # Сохраняем новые координаты только если они в пределах поля
-            else:
-                print("Помилка: X виходить за межі поля.")
-                break
+                new_x_coords.append((new_x , new_y))
 
         # Очистити поле і встановити нове розташування X
         field = [['.'] * 12 for j in range(9)]
-        x_field(field, x_coords)
 
         # Виведення поля з новим розташуванням X
-        for row in field:
-            print(" ".join(row))
+        if len(new_x_coords) == len(x_coors):
+            x_coords = new_x_coords
+            x_field(field,x_coords)
+            print_field(field)
+        else:
+            print("Помилка: X виходить за межі поля.")
     else:
         print("Неправильний формат команди. Спробуйте ще раз.")
 
