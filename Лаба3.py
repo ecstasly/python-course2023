@@ -41,7 +41,7 @@ while True:
         direction = parts[0]
         distance = int(parts[1])
 
-         new_x_coords = [] # Створюємо новий список для нових координат X
+        new_x_coords = [] # Створюємо новий список для нових координат X
 
         # Переміщення X по всім координатам
         for x, y in x_coords:
@@ -64,7 +64,7 @@ while True:
         field = [['.'] * 12 for j in range(9)]
 
         # Виведення поля з новим розташуванням X
-        if len(new_x_coords) == len(x_coors):
+        if len(new_x_coords) == len(x_coords):
             x_coords = new_x_coords
             x_field(field,x_coords)
             print_field(field)
@@ -72,5 +72,4 @@ while True:
             print("Помилка: X виходить за межі поля.")
     else:
         print("Неправильний формат команди. Спробуйте ще раз.")
-
     
